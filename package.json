@@ -21,7 +21,7 @@
     "build": "tsc",
     "build:slim": "tsc --sourceMap false",
     "clean": "rm -rf build/ releases/",
-    "release": "mkdir -p releases && rm -rf node_modules releases/$npm_package_version.zip && yarn install && yarn build:slim && rm -rf node_modules && yarn install --production && zip -x '.git/*' -x 'src/*' -x '.vscode/*' -x '.DS_Store' -r -9 releases/$npm_package_version.zip . && yarn install",
+    "release": "mkdir -p releases && rm -rf node_modules build/ releases/$npm_package_version.zip && yarn install && yarn build:slim && rm -rf node_modules && yarn install --production && zip -x '.git/*' -x 'src/*' -x '.vscode/*' -x '.DS_Store' -r -9 releases/$npm_package_version.zip . && yarn install",
     "test": "npm run lint && mocha src/**/*.spec.ts --require ts-node/register --reporter spec",
     "lint": "tslint --project ./ src/**/*.ts --fix",
     "lint:check": "tslint-config-prettier-check ./tslint.json",
