@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+      "max-line-length": {
+        "options": [100]
+      },
+      "new-parens": true,
+      "no-consecutive-blank-lines": false,
+      "no-var-requires": true,
+      "no-unused-variable": [true, {"ignore-pattern": "^_"}],
+      "no-submodule-imports": false,
+      "no-for-in-array": true,
+      "no-console": {
+        "severity": "warning",
+        "options": [
+          "debug",
+          "info",
+          "log",
+          "time",
+          "timeEnd",
+          "trace"
+        ]
+      },
+      "member-access": [true, "no-public"],
+      "quotemark": [true, "single"],
+      "trailing-comma": false,
+      "indent": [true, "spaces", 2],
+      "object-literal-sort-keys": false,
+      "ordered-imports": false,
+      "curly": [true, "ignore-same-line"],
+      "object-literal-key-quotes": [true, "as-needed"],
+      "prettier/prettier": ["error", { "singleQuote": true }],
+      "interface-name": false,
+      "no-empty": false
+  },
+  "jsRules": {
+    "max-line-length": {
+      "options": [120]
+    }
+  },
+  "linterOptions": {
+    "exclude": [
+      "./src/**/*.spec.ts"
+    ]
+  }
+}
