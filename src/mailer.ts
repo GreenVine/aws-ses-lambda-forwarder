@@ -23,6 +23,7 @@ class Mailer {
       const verdicts: { [key: string]: string } = {
         virusVerdict: 'VIRUS',
         spamVerdict: 'SPAM',
+        spfVerdict: 'SPF ERROR',
         dkimVerdict: 'DKIM ERROR',
         dmarcVerdict: 'DMARC ERROR'
       };

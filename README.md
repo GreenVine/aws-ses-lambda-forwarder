@@ -27,3 +27,11 @@ In addition, there're several environment variables need to be configured:
 | AWS_SECRET_ACCESS_KEY  	| Corresponding AWS secret access key                                      	|     No    	| (Value set by AWS) 	|
 
 You'll also need to make sure your Lambda execution role permits the forwarder to have access to S3 and SES services.
+
+## Email Filtering
+
+If you enabled `Enable Spam and Virus Scanning` in your inbound rule set, the forwarder will respect the scanning result provided by AWS, and if the email is:
+
+- Virus: The email will not be forwarded;
+- Spam or SPF/DKIM/DMARC Error: The email will be forwarded, however the email subject will prepend an indicator;
+- Clean: The email will be forwarded as is.
