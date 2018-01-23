@@ -4,7 +4,7 @@ export interface Payload {
   [key: string]: any;
 }
 
-export const envVariables: { [key: string]: string } = {
+export const envVariables: { [key: string]: string | undefined } = {
   AWS_REGION: undefined,
   AWS_ACCESS_KEY_ID: undefined,
   AWS_SECRET_ACCESS_KEY: undefined,
@@ -42,7 +42,7 @@ export function preflightCheck(ev: Payload): true | Error {
   return true;
 }
 
-export function result(err?: Error, data?: any, cb?: ((err?: Error, data?: any) => void)) {
+export function result(err?: Error | null, data?: any, cb?: ((err?: Error, data?: any) => void)) {
   const timestamp = new Date().toISOString();
 
   if (err) {

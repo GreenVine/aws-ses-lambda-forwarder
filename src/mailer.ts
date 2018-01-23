@@ -9,10 +9,16 @@ export interface EmailAttributes {
   timestamp: string;
 }
 
+export enum EmailSafetyIndex {
+  ACCEPTED,
+  NEUTRAL,
+  REJECTED
+}
+
 class Mailer {
   static isEmailSafe(verdictOptions: {
     [key: string]: any;
-  }): { safeIndex: -1 | 0 | 1; reason?: string } {
+  }): { safeIndex: EmailSafetyIndex; reason?: string } {
     if (verdictOptions) {
       const verdicts: { [key: string]: string } = {
         virusVerdict: 'VIRUS',
@@ -27,16 +33,16 @@ class Mailer {
         if (verdictOptions[key] && verdictOptions[key].status === 'FAIL') {
           if (key === 'virusVerdict') {
             // actively refuesd
-            return { safeIndex: -1, reason };
+            return { safeIndex: EmailSafetyIndex.REJECTED, reason };
           } else {
             // prepend warnings but still forward the email
-            return { safeIndex: 0, reason };
+            return { safeIndex: EmailSafetyIndex.NEUTRAL, reason };
           }
         }
       }
     }
 
-    return { safeIndex: 1 };
+    return { safeIndex: EmailSafetyIndex.ACCEPTED };
   }
 
   private readonly transporter: Transporter;

@@ -1,9 +1,8 @@
-import { isString } from 'lodash';
 import { createHash } from 'crypto';
 import { Attachment } from 'nodemailer/lib/mailer';
 
 import S3Kit from './s3';
-import Mailer from './mailer';
+import Mailer, { EmailSafetyIndex } from './mailer';
 import { Payload, preflightCheck, result } from './common';
 
 export async function handler(ev: Payload, ctx: Payload, cb: (err?: Error, data?: any) => void) {
@@ -34,11 +33,11 @@ export async function handler(ev: Payload, ctx: Payload, cb: (err?: Error, data?
     // check the security of inbound emails and reject malicious ones
     const { safeIndex, reason } = Mailer.isEmailSafe(receipt);
     switch (safeIndex) {
-      case 0:
+      case EmailSafetyIndex.NEUTRAL:
         emailParsed.subject = `[${reason}] ${emailParsed.subject}`;
         result(null, `Email with Message ID ${messageId} has failed ${reason} check`);
         break;
-      case -1:
+      case EmailSafetyIndex.REJECTED:
         return result(
           null,
           `Email with Message ID ${messageId} has been rejected due to ${reason}`,
@@ -56,8 +55,8 @@ export async function handler(ev: Payload, ctx: Payload, cb: (err?: Error, data?
         to: process.env.MAILER_TO_ADDRESS.split(','),
         replyTo: emailParsed.from.value[0] || process.env.MAILER_FROM_ADDRESS,
         bcc: process.env.MAILER_BCC_ADDRESS.split(','),
-        html: ((html) => (isString(html) ? html : null))(emailParsed.html),
-        text: ((text) => (isString(text) ? text : null))(emailParsed.text),
+        html: emailParsed.html as string,
+        text: emailParsed.text as string,
         subject: emailParsed.subject,
         attachments: [
           // attachments in original email
