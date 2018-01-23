@@ -1,6 +1,6 @@
 {
   "name": "aws-ses-lambda-forwarder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Forward Inbound SES Emails with Lambda Function",
   "main": "build/index.js",
   "repository": "git@github.com:GreenVine/aws-ses-lambda-forwarder.git",

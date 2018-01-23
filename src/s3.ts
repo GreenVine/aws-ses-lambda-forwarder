@@ -1,4 +1,5 @@
 import { S3 } from 'aws-sdk';
+import { isEmpty } from 'lodash';
 
 class S3Kit {
   private readonly instance: S3;
@@ -15,10 +16,12 @@ class S3Kit {
   }
 
   async getObject(messageId: string): Promise<string> {
+    const pfx = isEmpty(this.prefix) ? '' : `${this.prefix}/`;
+
     const req = await this.instance
       .getObject({
         Bucket: this.bucket,
-        Key: `${this.prefix}/${messageId}`
+        Key: `${pfx}${messageId}`
       })
       .promise();
 
