@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '6.10'
+script:
+- yarn release
+before_deploy:
+  - git config --local user.name "Robin"
+  - git config --local user.email "yixuan.liu@cba.com.au"
+deploy:
+  provider: releases
+  file_glob: true
+  api_key:
+    secure: V1QIElsJhPtRLU5bcNtASVUFuEeIXyHNshAs4JUHE09gq64QuREr4IVOEGXF+NtKHy5Jf1tTVJNyWAiTMFtvQUK5E5qHKlZyAw5RdxFXvKQGFIkM65Mar2wo5+PBRu5bxFqxihVx/z9RzQsepwP/yROdWqZJwwBzEtzVvYx/yRL9TTGkugX4aj7s/lwI/P/BSy/FwzzxJtMezM49ch9t5ZZZ400VLkiMbWjnQBrLJVxKr/FVHL+lldjtDJZCVTUKRyWuKeN4io0WSvSdx2av9xROrgJhemHyNwlrhJIz0+1hZePQrcBK5fpiyrm/KHcAn/E+WHrH0LVizfzWp/rIJvCkAb2WmEkOJy+qHisLyOuTdt9ObxMZRGY049O/CRhyVLBe4w20mhAXFFYDLf7fAre0dzNZLmKWZ9ghNiKNczgtwl4uZP+RkLcxfZPuKoF79oYIEEHqkN156fIDdzdDkUP/6YsdDG9+VmyLp4vG+F1rmlS0JzBhTLqTOjY0DTcq3dcOc6LM+AdC/ULfXiOTe3c6pITd6r0k12qxF05fxfN87An1caQh9wKvWO//UKsvTkMbcDgxaXN+iiQH5N38WSCYXlGOUPY8qD1y/zUaPCsIlzNXUWX/+9H65Dsr5Pjdv7oa9n9qPmgqDbeeRxQ1DtfBFwdhfl5uVKCQylpUMZw=
+  file: releases/lambda-pkg-*.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: GreenVine/aws-ses-lambda-forwarder
