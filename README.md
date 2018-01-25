@@ -23,7 +23,7 @@ In addition, there're several environment variables need to be configured:
 | MAILER_FROM_ADDRESS    	| From address that verified in SES                                        	|    Yes    	|          -         	|
 | MAILER_TO_ADDRESS      	| Email address(es) that forward email to, separated by comma              	|    Yes    	|          -         	|
 | MAILER_BCC_ADDRESS     	| Email address(es) that BCC email to, separated by comma                  	|     No    	|       (Empty)      	|
-| MAILER_ATTACH_ORIGINAL 	| Attach the original raw email as a .txt file (1 to enable, 0 to disable) 	|     No    	|          1         	|
+| MAILER_ATTACH_ORIGINAL 	| Attach the original raw email as a .eml file (1 to enable, 0 to disable) 	|     No    	|          0         	|
 | AWS_REGION             	| AWS region                                                               	|     No    	| (Value set by AWS) 	|
 | AWS_ACCESS_KEY_ID      	| AWS access key to be used                                                	|     No    	| (Value set by AWS) 	|
 | AWS_SECRET_ACCESS_KEY  	| Corresponding AWS secret access key                                      	|     No    	| (Value set by AWS) 	|

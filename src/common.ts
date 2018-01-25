@@ -14,7 +14,7 @@ export const envVariables: { [key: string]: string | undefined } = {
   MAILER_FROM_ADDRESS: undefined,
   MAILER_TO_ADDRESS: undefined,
   MAILER_BCC_ADDRESS: '',
-  MAILER_ATTACH_ORIGINAL: '1'
+  MAILER_ATTACH_ORIGINAL: '0'
 };
 
 export function preflightCheck(ev: Payload): true | Error {
