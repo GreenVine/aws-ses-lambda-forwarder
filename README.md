@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/GreenVine/aws-ses-lambda-forwarder.svg)](https://travis-ci.org/GreenVine/aws-ses-lambda-forwarder)
 
-A [AWS Lambda](https://aws.amazon.com/lambda) function written in Typescript that forwards all inbound [SES](https://aws.amazon.com/ses) emails to specific email addresses.
+An [AWS Lambda](https://aws.amazon.com/lambda) function written in Typescript that forwards all inbound [SES](https://aws.amazon.com/ses) emails to specific email addresses.
 
 ## Installation
 
